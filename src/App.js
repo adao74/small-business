@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from './theme';
+import store from './redux/store';
+
+import Navbar from './components/Navbar';
+import LoginBar from './components/LoginBar';
+import PrivateRoute from './components/PrivateRoute';
+import Listing from './pages/Listing';
+import Details from './pages/Details';
+import Login from './pages/Login';
+import AddListing from './pages/AddListing';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <Navbar />
+          <LoginBar />
+          <Routes>
+            <Route path="/" element={<Listing />} />
+            <Route path="/details/:id" element={<Details />} />
+            <Route path="/login" element={<Login />} />
+            <Route 
+              path="/add" 
+              element={
+                <PrivateRoute>
+                  <AddListing />
+                </PrivateRoute>
+              } 
+            />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
