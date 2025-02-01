@@ -1,0 +1,6 @@
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
+export const SET_LISTINGS = 'SET_LISTINGS';
+export const ADD_LISTING = 'ADD_LISTING';
+export const DELETE_LISTING = 'DELETE_LISTING';
+export const SET_MAP_COORDINATES = 'SET_MAP_COORDINATES'; 
